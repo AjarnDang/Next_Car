@@ -10,6 +10,7 @@ import {
 } from "@ant-design/icons";
 import Logo from "@/app/assets/img/SOne_index_logos_white.png";
 import LogoDark from "@/app/assets/img/SOne_index_logos.png";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 export default function Navbar() {
@@ -24,11 +25,15 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const pathname = usePathname();
+  const isHomePage = pathname === "/home";
+
   return (
     <div
       className={`navbar p-6 fixed top-0 left-0 w-full z-50 transition-colors duration-300
-        ${scrolled ? "bg-slate-100 shadow-sm" : "bg-transparent text-white"}
-    `}
+        ${scrolled ? "bg-slate-100 shadow-sm" : "bg-transparent"} 
+        ${isHomePage && !scrolled ? "text-white" : "text-gray-900"}
+      `}
     >
       <div className="navbar-start">
         <div className="dropdown">
@@ -69,17 +74,27 @@ export default function Navbar() {
       </div>
       <div className="navbar-center">
         <a className="btn btn-ghost hover:bg-transparent" href="/home">
-          {scrolled ? (
-            <Image
-              src={LogoDark}
-              width={0}
-              height={0}
-              alt="Logo"
-              className="w-full h-auto"
-            />
+          {isHomePage ? (
+            scrolled ? (
+              <Image
+                src={LogoDark}
+                width={0}
+                height={0}
+                alt="Logo"
+                className="w-full h-auto"
+              />
+            ) : (
+              <Image
+                src={Logo}
+                width={0}
+                height={0}
+                alt="Logo"
+                className="w-full h-auto"
+              />
+            )
           ) : (
             <Image
-              src={Logo}
+              src={LogoDark}
               width={0}
               height={0}
               alt="Logo"

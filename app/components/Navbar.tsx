@@ -26,8 +26,8 @@ export default function Navbar() {
 
   return (
     <div
-      className={`navbar fixed top-0 left-0 w-full z-50 transition-colors duration-300
-        ${scrolled ? "bg-white shadow-sm" : "bg-transparent text-white"}
+      className={`navbar p-6 fixed top-0 left-0 w-full z-50 transition-colors duration-300
+        ${scrolled ? "bg-slate-100 shadow-sm" : "bg-transparent text-white"}
     `}
     >
       <div className="navbar-start">

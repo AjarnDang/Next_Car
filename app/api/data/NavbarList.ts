@@ -5,15 +5,27 @@ type Links = {
 
 export const NavLinks: Links[] = [
   {
-    page: "Home",
-    link: "/",
+    page: "Product & Services",
+    link: "#",
   },
   {
-    page: "Models",
-    link: "/",
+    page: "Promotions",
+    link: "#",
   },
   {
-    page: "Cars",
-    link: "/",
+    page: "News & Events",
+    link: "#",
+  },
+  {
+    page: "Safety Tips",
+    link: "#",
+  },
+  {
+    page: "FAQS",
+    link: "#",
+  },
+  {
+    page: "Location",
+    link: "#",
   },
 ];

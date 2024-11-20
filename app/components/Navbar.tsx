@@ -3,7 +3,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { NavLinks } from "../api/data/NavbarList";
-import { LoginOutlined } from "@ant-design/icons";
+import {
+  LoginOutlined,
+  SearchOutlined,
+  GlobalOutlined,
+} from "@ant-design/icons";
+import Logo from "@/app/assets/img/SOne_index_logos_white.png";
+import LogoDark from "@/app/assets/img/SOne_index_logos.png";
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -20,12 +27,16 @@ export default function Navbar() {
   return (
     <div
       className={`navbar fixed top-0 left-0 w-full z-50 transition-colors duration-300
-        ${scrolled ? "bg-white shadow-sm" : "bg-transparent"}
+        ${scrolled ? "bg-white shadow-sm" : "bg-transparent text-white"}
     `}
     >
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+          <div
+            tabIndex={0}
+            role="button"
+            className={`btn btn-ghost btn-circle`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -43,22 +54,49 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+            className={`menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow bg-white
+              ${scrolled ? "" : "text-gray-900"}`}
           >
             {NavLinks.map((item, index) => (
               <li key={index}>
-                <a href={item.link}>{item.page}</a>
+                <a href={item.link} className="leading-8">
+                  {item.page}
+                </a>
               </li>
             ))}
           </ul>
         </div>
       </div>
       <div className="navbar-center">
-        <a className="btn btn-ghost text-xl">S ONE SERVICE</a>
+        <a className="btn btn-ghost hover:bg-transparent" href="/home">
+          {scrolled ? (
+            <Image
+              src={LogoDark}
+              width={0}
+              height={0}
+              alt="Logo"
+              className="w-full h-auto"
+            />
+          ) : (
+            <Image
+              src={Logo}
+              width={0}
+              height={0}
+              alt="Logo"
+              className="w-full h-auto"
+            />
+          )}
+        </a>
       </div>
       <div className="navbar-end">
         <button className="btn btn-ghost btn-circle">
-          <LoginOutlined />
+          <LoginOutlined sizes="large" />
+        </button>
+        <button className="btn btn-ghost btn-circle">
+          <GlobalOutlined sizes="large" />
+        </button>
+        <button className="btn btn-ghost btn-circle">
+          <SearchOutlined sizes="large" />
         </button>
       </div>
     </div>
